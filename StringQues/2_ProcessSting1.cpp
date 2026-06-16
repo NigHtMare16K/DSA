@@ -1,0 +1,39 @@
+//3612
+#include<iostream>
+#include<vector>
+#include <algorithm>
+using namespace std;
+
+string processStr(string s) {
+    string ans;
+
+    for(int i = 0; i < s.size(); i++) {
+
+        if(s[i] == '*') {
+            if(!ans.empty()) {
+                ans.pop_back();
+            }
+        }
+        else if(s[i] == '#') {
+            ans += ans;
+        }
+        else if(s[i] == '%') {
+            reverse(ans.begin(), ans.end());
+        }
+        else {
+            ans.push_back(s[i]);
+        }
+    }
+
+    return ans;
+}
+
+int main(){
+    string s = "p##";
+
+    string ans = processStr(s);
+    
+    for(int i=0;i<ans.size();i++){
+        cout<<ans[i]<<" ";
+    }
+}
